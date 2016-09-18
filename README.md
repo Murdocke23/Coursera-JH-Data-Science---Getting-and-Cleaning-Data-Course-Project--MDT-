@@ -1,4 +1,4 @@
-This project is a submission for the John Hopkins' Data Science Course "Getting and Cleaning Data" offered through Coursera.
+This project is a submission for the Johns Hopkins' Data Science Course "Getting and Cleaning Data" offered through Coursera.
 
  
 Description
