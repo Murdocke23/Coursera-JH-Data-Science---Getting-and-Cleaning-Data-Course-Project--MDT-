@@ -210,7 +210,7 @@ variableAverages_combinedFactors <- aggregate(. ~ subject + activity,
                      data=allCombined_OnlyMeanStd, 
                      mean)
 #export to tab-delimited file
-write.table(variableAverages_combinedFactors, "features_mean_and_std_combined_means.txt", sep="\t")
+write.table(variableAverages_combinedFactors, "features_mean_and_std_combined_means.txt", sep="\t", row.names = FALSE)
 
 
 
