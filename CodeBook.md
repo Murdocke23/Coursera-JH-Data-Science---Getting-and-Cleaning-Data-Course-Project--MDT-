@@ -10,7 +10,13 @@ The original raw inertial signals data, processed data variables, and feature de
 
 Transformed Study Data
 =======================================
-This project's script modifies the original study data into a new data set that represents the mean values of original feature data for all combinations of subjects and activities. Each element is explained more below.
+This project's script modifies the original study data into a new data set that:
+* combines separate "train" and "test" datasets into a single "combined" dataset
+* adds more descriptive labels to feature data, as well as descriptive factor values for activity data
+* extracts mean and standard deviation values from the combined dataset
+* summarizes and exports a new data set providing the average of the extracted values for each combination of subject and activity in the study
+
+The final output represents the mean values of original feature data for all combinations of subjects and activities. Each element is explained more below.
 
 
 Subject Data
@@ -53,36 +59,48 @@ From the original study README documentation:
 
 The original data also included 5 additional variables that averaged signal sample data, but were not retained for this project's output.
 
-**The original feature names and were then:**
+To help increase readability, original variable names were transformed to include more descriptive text based on study information.
+**The feature names (followed by their their original feature names in parentheses) are:**
 * Time-based features:
 ** those with separate X,Y,Z components:
-*** tBodyAcc-XYZ
-*** tGravityAcc-XYZ
-*** tBodyAccJerk-XYZ
-*** tBodyGyro-XYZ
-*** tBodyGyroJerk-XYZ
+*** time.Body.Acceleration (tBodyAcc)
+*** time.Gravity.Acceleration (tGravityAcc)
+*** time.Body.Acceleration.Jerk (tBodyAccJerk)
+*** time.Body.AngularVelocity (tBodyGyro)
+*** time.Body.AngularVelocity.Jerk (tBodyGyroJerk)
 ** those as singular components:
-*** tBodyAccMag
-*** tGravityAccMag
-*** tBodyAccJerkMag
-*** tBodyGyroMag
-*** tBodyGyroJerkMag
+*** time.Body.Acceleration.Magnitude  (tBodyAccMag)
+*** time.Gravity.Acceleration.Magnitude (tGravityAccMag)
+*** time.Body.Acceleration.Jerk.Magnitude (tBodyAccJerkMag)
+*** time.Body.AngularVelocity.Magnitude (tBodyGyroMag)
+*** time.Body.AngularVelocity.Jerk.Magnitude (tBodyGyroJerkMag)
+
 *Frequency-based features:
 ** those with separate X,Y,Z components:
-*** fBodyAcc-XYZ
-*** fBodyAccJerk-XYZ
-*** fBodyGyro-XYZ
+*** frequency.Body.Acceleration (fBodyAcc)
+*** frequency.Body.Acceleration.Jerk (fBodyAccJerk)
+*** frequency.Body.AngularVelocity (fBodyGyro)
 ** those as singular components:
-*** fBodyAccMag
-*** fBodyAccJerkMag _(incorrectly named fBodyBadyAccJerkMag in the original study's features.txt file)_
-*** fBodyGyroMag _(incorrectly named fBodyBodyGyroMag in the original study's features.txt file)_
-*** fBodyGyroJerkMag _(incorrectly named fBodyBodyGyroJerkMag in the original study's features.txt file)_
+*** frequency.Body.Acceleration.Magnitude (fBodyAccMag)
+*** frequency.Body.Acceleration.Jerk.Magnitude (fBodyAccJerkMag)
+*** frequency.Body.AngularVelocity.Magnitude (fBodyGyroMag)
+*** frequency.Body.AngularVelocity.Jerk.Magnitude (fBodyGyroJerkMag)
+
+_Note:_
+_The last three features were incorrectly named in the original study's features.txt file (duplicating "Body" in each variable name, and also corrected for when transforming the feature labels to more descriptive labels_
 
 **Feature variables**
 The original data set included a set of 17 variables related to each feature, some with separate levels. 
 
 Of the original variables, only two were retained:
-* mean: mean
-* std: standard deviation
+* mean
+* standard deviation
 
-These variables were also averaged for each subject-activity group, and it is that average/mean value that appears in the output file products by this project's script.
+In the original data, these appeared as "mean()" and "std()" within the feature variable names. In the output data of this project, they appear as as suffixes ".mean" and ".std" added onto to each related feature name, respectively.
+(i.e. "time.Body.Acceleration" is represented by "time.Body.Acceleration.mean" and "time.Body.Acceleration.std"  
+
+The values in the output data also represent averages of those feature variables for each subject-activity group.
+
+
+
+
