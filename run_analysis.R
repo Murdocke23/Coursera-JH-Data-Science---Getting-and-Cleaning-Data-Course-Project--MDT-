@@ -138,8 +138,26 @@ activityCols_cleaned <- gsub(",","_",
                                        gsub("\\(\\)","",
                                             activityCols))))
 
+#apply more descriptive names to columns, based on study details
+# **** ALSO: corrects error in study features.txt file, 
+# **** repeating "Body" twice in variables for features:
+# ****     fBodyAccJerkMag, fBodyGyroMag, and fBodyGyroJerkMag
+# ****     (i.e. features.txt file has fBodyBodyAccJerkMag-mean())
+#note this does not further affect the "angle" type variables
+activityCols_descriptive <- 
+  gsub("\\.\\.",".",
+  gsub("\\.JerkMag.",".Jerk.Magnitude.",
+  gsub("\\.Mag",".Magnitude.",
+  gsub("\\.Gyro",".AngularVelocity.",
+  gsub("\\.Acc",".Acceleration.",
+  gsub("\\.(Body|Gravity)",".\\1.",
+  gsub("\\.BodyBody",".Body",
+  gsub("^f","frequency.",
+  gsub("^t","time.",activityCols_cleaned)))))))))
+
+
 #apply feature column names
-colnames(X_combined) <- activityCols_cleaned
+colnames(X_combined) <- activityCols_descriptive
 
 #clean up other main columns
 colnames(subject_combined) <- "subject"
